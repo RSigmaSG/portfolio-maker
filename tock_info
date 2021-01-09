@@ -1,0 +1,15 @@
+
+[1mFrom:[0m /mnt/c/Users/SG/dev/flatiron/labs/portfolio_maker/lib/command_line_interface.rb:80 CommandLineInterface#stock_find:
+
+    [1;34m75[0m:     puts [31m[1;31m"[0m[31mSelect one of the following options by entering the option number in your ternminal:[1;31m"[0m[31m[0m
+    [1;34m76[0m:     puts [31m[1;31m"[0m[31m1. Add stock to portfolio[1;31m"[0m[31m[0m
+    [1;34m77[0m:     puts [31m[1;31m"[0m[31m2. Return to main menu[1;31m"[0m[31m[0m
+    [1;34m78[0m: 
+    [1;34m79[0m:     input = menu_input([1;34m2[0m)
+ => [1;34m80[0m:     binding.pry
+    [1;34m81[0m:     [32mcase[0m input
+    [1;34m82[0m:     [32mwhen[0m [1;34m1[0m 
+    [1;34m83[0m:       loop [32mdo[0m
+    [1;34m84[0m:         puts [31m[1;31m"[0m[31mSelect what amount would you like to buy?[1;35m\n[0m[31m current cash = #{user_portfolio.cash}[0m[31m[1;31m"[0m[31m[0m
+    [1;34m85[0m:         amount = gets.chomp.to_i
+
