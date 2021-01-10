@@ -22,6 +22,7 @@ class Portfolio
         value_change = Stock.update_stocks
         @invested += value_change
         @capital += value_change
+        
       end
 
     end

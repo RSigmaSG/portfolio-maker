@@ -27,6 +27,7 @@ class Stock
     stock_info[:market_cap] = self.market_cap
 
     stock_info
+    
   end
 
   def update_quantity
