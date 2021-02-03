@@ -1,4 +1,4 @@
-class CommandLineInterface
+class PortfolioMaker::CommandLineInterface
 
   attr_accessor :user_portfolio
 

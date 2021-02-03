@@ -1,4 +1,4 @@
-class Portfolio
+class PortfolioMaker::Portfolio
 
     attr_accessor :capital, :cash, :invested
   
