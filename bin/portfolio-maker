@@ -2,4 +2,4 @@
 
 require_relative '../lib/portfolio_maker.rb'
 
-CommandLineInterface.new.run
+PortfolioMaker::CommandLineInterface.new.run
