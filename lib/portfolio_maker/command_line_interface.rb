@@ -1,9 +1,3 @@
-require_relative "../lib/scraper.rb"
-require_relative "../lib/portfolio.rb"
-require_relative "../lib/stock.rb"
-require 'nokogiri'
-require 'colorize'
-
 class CommandLineInterface
 
   attr_accessor :user_portfolio

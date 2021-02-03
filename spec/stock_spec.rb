@@ -3,7 +3,7 @@ require "spec_helper"
 describe "Stock" do 
 
     let(:stock){Stock.new}
-  let!(:student_index_array) {[{:name=>"Alex Patriquin", :location=>"New York, NY"},
+  let!(:student_index_array) {[{:name=>"GOOG", :location=>"New York, NY"},
  {:name=>"Bacon McRib", :location=>"Kansas City, MO"},
  {:name=>"Alisha McWilliams", :location=>"San Francisco, CA"},
  {:name=>"Daniel Fenjves", :location=>"Austin, TX"},
