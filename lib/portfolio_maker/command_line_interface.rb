@@ -58,11 +58,9 @@ class PortfolioMaker::CommandLineInterface
 
       ticker = gets.chomp
       
-      if (!Stock.find_stock_with_ticker(ticker))
-        stock_info = Scraper.scrape_stock_page("https://finance.yahoo.com/quote/" + ticker)
-      else
-        stock_info = Stock.find_stock_with_ticker(ticker).make_hash_from_stock
-      end
+
+      stock_info = Scraper.scrape_stock_page("https://finance.yahoo.com/quote/" + ticker)
+
       break if (stock_info != nil)
       puts "Please enter a proper stock ticker (No ETFs, Crypto, Indexes etc.)"
     end
