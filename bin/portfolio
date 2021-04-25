@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require 'portfolio_maker'
+
+PortfolioMaker::CommandLineInterface.new.run
