@@ -58,9 +58,11 @@ class PortfolioMaker::CommandLineInterface
 
       ticker = gets.chomp
       
-
-      stock_info = Scraper.scrape_stock_page("https://finance.yahoo.com/quote/" + ticker)
-
+      if (!Stock.find_stock_with_ticker(ticker))
+        stock_info = Scraper.scrape_stock_page("https://finance.yahoo.com/quote/" + ticker)
+      else
+        stock_info = Stock.find_stock_with_ticker(ticker).make_hash_from_stock
+      end
       break if (stock_info != nil)
       puts "Please enter a proper stock ticker (No ETFs, Crypto, Indexes etc.)"
     end
@@ -142,7 +144,7 @@ class PortfolioMaker::CommandLineInterface
                 puts "How much would you like to sell of $#{Stock.find_stock_with_ticker(ticker).update_stock_price} of the stock or enter ""cancel"" to return to portfolio menu"
                 amount = gets.chomp
                 
-                break if (!(amount.to_i <= 0 || amount.to_i > Stock.find_stock_with_ticker(ticker).equity.to_f) && amount.scan(/\D/).empty?)
+                break if ((!(amount.to_i <= 0 || amount.to_i > Stock.find_stock_with_ticker(ticker).equity.to_f) && amount.scan(/\D/).empty?) || amount == "cancel")
                 
                 puts "Please input correct value"
             end
@@ -165,7 +167,7 @@ class PortfolioMaker::CommandLineInterface
             puts "How much would you like to withdraw or enter ""cancel"" to return to portfolio menu \n current cash = $#{user_portfolio.cash}"
             amount = gets.chomp
 
-            break if (!(amount.to_i <= 0 || amount.to_i > user_portfolio.cash) && amount.scan(/\D/).empty?)
+            break if ((!(amount.to_i <= 0 || amount.to_i > user_portfolio.cash) && amount.scan(/\D/).empty?) || amount == "cancel")
       
             puts "Please input correct value"
           end
