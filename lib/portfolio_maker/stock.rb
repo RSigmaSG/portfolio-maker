@@ -14,7 +14,11 @@ class Stock
   def self.sell(ticker, amount)
   
     self.find_stock_with_ticker(ticker).equity -= amount
-    self.find_stock_with_ticker(ticker).update_quantity
+    if (self.find_stock_with_ticker(ticker).equity == 0) 
+      @@all.delete(self.find_stock_with_ticker(ticker))
+    else
+      self.find_stock_with_ticker(ticker).update_quantity
+    end
     
   end
 

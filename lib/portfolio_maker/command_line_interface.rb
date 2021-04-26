@@ -123,41 +123,43 @@ class PortfolioMaker::CommandLineInterface
         when 2
           if(user_portfolio.stocks.empty?)
             puts "Porfolio is empty"
-            portfolio_menu
-          end
-          ticker = ""
-          amount = 0
-          loop do
-            puts "Enter ticker for stock you want to sell or enter ""cancel"" to return to portfolio menu"
-              puts "Tickers:"
-              Stock.display_tickers
-              ticker = gets.chomp
-
-              break if (Stock.find_stock_with_ticker(ticker))
-
-              puts "Please enter a valid ticker"
-              
-          end
-          if !(amount == "cancel") 
+          else
+            ticker = ""
+            amount = 0
             loop do
-                #binding.pry
-                puts "How much would you like to sell of $#{Stock.find_stock_with_ticker(ticker).update_stock_price} of the stock or enter ""cancel"" to return to portfolio menu"
-                amount = gets.chomp
+              break if (Stock.find_stock_with_ticker(ticker))
+              puts "Enter ticker for stock you want to sell or enter ""cancel"" to return to portfolio menu"
+                puts "Tickers:"
+                Stock.display_tickers
+                ticker = gets.chomp
+
+                break if ((Stock.find_stock_with_ticker(ticker)) || ticker == "cancel")
+
+                puts "Please enter a valid ticker"
                 
-                break if ((!(amount.to_i <= 0 || amount.to_i > Stock.find_stock_with_ticker(ticker).equity.to_f) && amount.scan(/\D/).empty?) || amount == "cancel")
-                
-                puts "Please input correct value"
             end
+            if !(ticker == "cancel") 
+              loop do
+                  #binding.pry
+                  puts "How much would you like to sell of $#{Stock.find_stock_with_ticker(ticker).update_stock_price} of the stock or enter ""cancel"" to return to portfolio menu"
+                  amount = gets.chomp
+                  
+                  break if ((!(amount.to_i <= 0 || amount.to_i > Stock.find_stock_with_ticker(ticker).equity.to_f) && amount.scan(/\D/).empty?) || amount == "cancel")
+                  
+                  puts "Please input correct value"
+              end
+              user_portfolio.sell_stock(ticker, amount.to_i) if !(amount == "cancel" ) 
+              puts "Sold $#{amount} of #{ticker}" if !(amount == "cancel")
+            end
+           
           end
-          user_portfolio.sell_stock(ticker, amount.to_i) if !(amount == "cancel") 
-          puts "Sold $#{amount} of #{ticker}" if !(amount == "cancel") 
         when 3
           amount = ""
           loop do
             puts "How much would you like to deposit or enter ""cancel"" to return to portfolio menu"
             amount = gets.chomp
             
-            break if (!(amount.to_i <= 0) && amount.scan(/\D/).empty?)
+            break if ((!(amount.to_i <= 0) && amount.scan(/\D/).empty?) || amount == "cancel")
             
             puts "Please input correct value"
           end
