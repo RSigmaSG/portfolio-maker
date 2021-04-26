@@ -34,11 +34,13 @@ class Scraper
 
   def self.scrape_stock_page(stock_url)
     
-    doc = Nokogiri::HTML(open(stock_url))
+    begin
+        doc = Nokogiri::HTML(open(stock_url))
 
-    if ((doc.css("#quote-header-info div div div")).empty? || doc.css("#quote-header-info div div div span")[3].text == "")
-      return nil
+    rescue
+        return nil
     end
+    
 
     #binding.pry
     stock = {}
